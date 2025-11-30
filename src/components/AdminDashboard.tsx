@@ -141,7 +141,7 @@ const AdminDashboard: React.FC = () => {
 
       {stats && (
         <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid item xs={12} md={4}>
+          <Grid item sx={{ mb: 4 }}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Total Orders</Typography>
@@ -150,7 +150,7 @@ const AdminDashboard: React.FC = () => {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item sx={{ mb: 4 }}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Avg Delivery Time</Typography>
@@ -161,7 +161,7 @@ const AdminDashboard: React.FC = () => {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item sx={{ mb: 4 }}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Orders by Stage</Typography>
