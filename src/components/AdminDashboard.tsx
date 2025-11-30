@@ -45,7 +45,7 @@ interface Stats {
 }
 
 const AdminDashboard: React.FC = () => {
-  // removed unused `user` to avoid lint warning
+  // call useAuth to ensure auth context loads; do not destructure unused `user`
   useAuth();
 
   const [orders, setOrders] = useState<Order[]>([]);
@@ -58,7 +58,6 @@ const AdminDashboard: React.FC = () => {
   const [details, setDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  // wrap fetches in useCallback and include them in useEffect deps
   const fetchOrders = useCallback(async () => {
     try {
       setLoading(true);
@@ -140,8 +139,9 @@ const AdminDashboard: React.FC = () => {
       {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
       {stats && (
+        // parent Grid container — child Grid items must include 'item' and layout props
         <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid item sx={{ mb: 4 }}>
+          <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Total Orders</Typography>
@@ -150,7 +150,7 @@ const AdminDashboard: React.FC = () => {
             </Card>
           </Grid>
 
-          <Grid item sx={{ mb: 4 }}>
+          <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Avg Delivery Time</Typography>
@@ -161,7 +161,7 @@ const AdminDashboard: React.FC = () => {
             </Card>
           </Grid>
 
-          <Grid item sx={{ mb: 4 }}>
+          <Grid item xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Orders by Stage</Typography>
