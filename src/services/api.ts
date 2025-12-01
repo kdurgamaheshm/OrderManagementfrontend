@@ -1,13 +1,14 @@
-import axios from 'axios';
+// frontend: src/services/api.ts
+import axios from "axios";
 
+const base = (process.env.REACT_APP_API_URL || "http://localhost:5000/api").replace(/\/+$/, "");
 const api = axios.create({
-  baseURL: 'https://delivery-management-backend-ssl7.onrender.com/api',
+  baseURL: base,
 });
 
-// Add token to requests
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
+  const token = localStorage.getItem("token");
+  if (token && config.headers) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
