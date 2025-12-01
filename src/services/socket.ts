@@ -1,6 +1,16 @@
-import { io, Socket } from 'socket.io-client';
+// frontend: src/services/socket.ts
+import { io } from "socket.io-client";
 
-const socket = io("https://delivery-management-backend-ssl7.onrender.com", { path: "/socket.io" });
+const rawApi = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+// remove trailing slash and remove /api if present
+const BACKEND = rawApi.replace(/\/+$/, "").replace(/\/api$/i, "");
 
+console.log("Socket connecting to backend:", BACKEND);
+
+const socket = io(BACKEND, {
+  path: "/socket.io",
+  transports: ["websocket", "polling"],
+  autoConnect: true,
+});
 
 export default socket;
